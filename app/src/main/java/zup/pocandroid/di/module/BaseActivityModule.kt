@@ -6,10 +6,15 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-object BaseActivityModule {
+abstract class BaseActivityModule {
 
-    @Provides
-    fun providesFragmentManager(activity: AppCompatActivity): FragmentManager {
-        return activity.supportFragmentManager
+    @Module
+    companion object {
+
+        @JvmStatic
+        @Provides
+        internal fun providesFragmentManager(activity: AppCompatActivity): FragmentManager {
+            return activity.supportFragmentManager
+        }
     }
 }

@@ -1,4 +1,4 @@
-package zup.pocandroid
+package zup.pocandroid.di.annotation
 
 import javax.inject.Qualifier
 

@@ -8,12 +8,18 @@ import dagger.android.DaggerApplication
 import dagger.android.support.AndroidSupportInjectionModule
 import zup.pocandroid.di.module.ActivityBindingsModule
 import zup.pocandroid.di.module.ApiServiceModule
-import zup.pocandroid.di.module.BaseActivityModule
 import zup.pocandroid.di.module.NetworkModule
+import zup.pocandroid.di.module.ViewModelBindindsModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(NetworkModule::class, ApiServiceModule::class, ActivityBindingsModule::class, AndroidSupportInjectionModule::class))
+@Component(modules = [
+    (NetworkModule::class),
+    (ApiServiceModule::class),
+    (ActivityBindingsModule::class),
+    (ViewModelBindindsModule::class),
+    (AndroidSupportInjectionModule::class)
+])
 interface AppComponent : AndroidInjector<DaggerApplication> {
 
     override fun inject(daggerApplication: DaggerApplication)

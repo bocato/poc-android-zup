@@ -12,7 +12,6 @@ import com.google.gson.GsonBuilder
 import android.app.Application
 import dagger.Module
 import okhttp3.Cache
-import zup.pocandroid.RetrofitWcc
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 
@@ -42,7 +41,6 @@ class NetworkModule {
     }
 
     @Provides
-    @RetrofitWcc
     internal fun provideRetrofitWcc(gson: Gson, cache: Cache, @Named("baseUrl") baseUrl: String): Retrofit {
         return provideRetrofit(gson, cache, baseUrl)
     }

@@ -1,2 +1,0 @@
-package zup.pocandroid
-
