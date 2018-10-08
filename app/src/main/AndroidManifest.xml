@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <!--<activity android:name="zup.pocandroid.feature.detail.activity.PokemonDetailActivity" />-->
+        <activity android:name="zup.pocandroid.feature.detail.activity.PokemonDetailActivity" />
 
     </application>
 

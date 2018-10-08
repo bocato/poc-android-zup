@@ -1,21 +1,22 @@
 package zup.pocandroid.feature.list.activity
 
-import android.support.v7.app.AlertDialog
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_pokemon_list.rvPokemons
 import javax.inject.Inject
 import zup.pocandroid.R
 import zup.pocandroid.base.BaseActivity
-import zup.pocandroid.base.BaseDatabindingActivity
-import zup.pocandroid.data.model.presentation.PokemonPresentation
-import zup.pocandroid.databinding.ActivityPokemonListBinding
 import zup.pocandroid.feature.list.adapter.PokemonAdapter
+import zup.pocandroid.feature.list.adapter.PokemonAdapter.OnPokemonSelectedListener
+import zup.pocandroid.feature.list.navigator.PokemonListNavigator
 import zup.pocandroid.feature.list.viewmodel.PokemonListViewModel
+import zup.pocandroid.util.showAlertMessage
 
 class PokemonListActivity : BaseActivity<PokemonListViewModel>() {
 
     @Inject
     lateinit var pokemonAdapter: PokemonAdapter
+    @Inject
+    lateinit var navigator: PokemonListNavigator
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -25,15 +26,16 @@ class PokemonListActivity : BaseActivity<PokemonListViewModel>() {
 
     override fun initialize() {
         rvPokemons.adapter = pokemonAdapter
+        pokemonAdapter.onPokemonSelectedListener = (object : OnPokemonSelectedListener {
+            override fun onPokemonSelected(pokemonId: String) {
+                navigator.onClickPokemon(pokemonId)
+            }
+        })
 
         compositeDisposable.add(viewModel.getPokemonsPresentation().subscribe({pokemonPresentations ->
             pokemonAdapter.items = pokemonPresentations
-        }, { throwable ->
-            AlertDialog.Builder(this)
-                    .setMessage(throwable.message)
-                    .setPositiveButton("OK") { dialog, _ ->
-                        dialog.dismiss()
-                    }.show()
+        }, { _ ->
+            showAlertMessage(this, "Ocorreu um erro inesperado.")
         }))
     }
 

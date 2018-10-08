@@ -7,12 +7,13 @@ import android.os.Bundle
 
 abstract class BaseDatabindingActivity<DB : ViewDataBinding, VM : ViewModel> : BaseActivity<VM>() {
 
-    protected lateinit var mDataBinding: DB
+    protected lateinit var dataBinding: DB
     override val shouldSetContentView: Boolean get() = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (getLayoutId() != null) {
-            mDataBinding = DataBindingUtil.setContentView(this, getLayoutId()!!)
+            dataBinding = DataBindingUtil.setContentView(this, getLayoutId()!!)
+            dataBinding.setLifecycleOwner(this)
         }
 
         super.onCreate(savedInstanceState)

@@ -8,11 +8,11 @@ import zup.pocandroid.feature.list.viewmodel.converter.PokemonPresentationConver
 import javax.inject.Inject
 
 class PokemonListViewModel @Inject constructor(
-        private val pkemonRepository: PokemonRepository,
+        private val pokemonRepository: PokemonRepository,
         private val converter: PokemonPresentationConverter) : ViewModel() {
 
     fun getPokemonsPresentation(): Single<List<PokemonPresentation>> {
-        return pkemonRepository.getPokemonList().map {
+        return pokemonRepository.getPokemonList().map {
             converter.convert(it)
         }
     }
