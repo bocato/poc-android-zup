@@ -19,8 +19,8 @@ import zup.pocandroid.data.source.remote.PokemonApi
 @RunWith(MockitoJUnitRunner::class)
 open class PokemonRepositoryTest {
 
-    @Rule
-    public open var trampolineScheduler = TrampolineSchedulerRule()
+    @Rule @JvmField
+    val trampolineScheduler = TrampolineSchedulerRule()
 
     @Mock
     private lateinit var pokemonApiMock: PokemonApi

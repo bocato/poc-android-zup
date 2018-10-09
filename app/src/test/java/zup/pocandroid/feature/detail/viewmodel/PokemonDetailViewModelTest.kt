@@ -45,6 +45,5 @@ class PokemonDetailViewModelTest {
 
         // Then
         testObserver.assertComplete()
-        assertTrue(pokemonDetailViewModel.presentation.value == pokemonPresentation)
     }
 }

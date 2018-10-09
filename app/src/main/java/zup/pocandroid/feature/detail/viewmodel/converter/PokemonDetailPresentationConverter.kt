@@ -18,7 +18,7 @@ open class PokemonDetailPresentationConverter @Inject constructor() {
 
         var abilities = ""
         pokemonDetailResponse.abilities?.forEach {
-            abilities += it.abilityDetail?.name
+            abilities += it.abilityDetail?.name + " "
         }
 
         return PokemonPresentation(

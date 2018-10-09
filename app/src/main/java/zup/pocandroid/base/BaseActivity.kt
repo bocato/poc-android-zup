@@ -22,6 +22,7 @@ abstract class BaseActivity<VM : ViewModel>: AppCompatActivity(), HasSupportFrag
 
     protected lateinit var viewModel: VM
     protected open val shouldSetContentView: Boolean get() = true
+    protected open val shouldCallInitialize: Boolean get() = true
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return supportFragmentInjector
@@ -30,7 +31,9 @@ abstract class BaseActivity<VM : ViewModel>: AppCompatActivity(), HasSupportFrag
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
             AndroidInjection.inject(this)
-        } catch (ex: Exception) {}
+        } catch (ex: Exception) {
+            print(ex.message)
+        }
 
         super.onCreate(savedInstanceState)
 
@@ -40,7 +43,9 @@ abstract class BaseActivity<VM : ViewModel>: AppCompatActivity(), HasSupportFrag
             setContentView(getLayoutId()!!)
         }
 
-        initialize()
+        if (shouldCallInitialize) {
+            initialize()
+        }
     }
 
     protected abstract fun getLayoutId(): Int?

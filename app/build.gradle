@@ -23,7 +23,7 @@ android {
     dataBinding {
         enabled = true
     }
-    testOptions { // <-- You need this
+    testOptions {
         unitTests {
             returnDefaultValues = true
         }

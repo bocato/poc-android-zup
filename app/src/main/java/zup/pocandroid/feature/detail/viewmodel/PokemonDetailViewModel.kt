@@ -22,7 +22,7 @@ class PokemonDetailViewModel @Inject constructor(
 
     fun getPokemonPresentation(): Completable {
         return pokemonRepository.getPokemonById(pokemonId).map {
-            presentation.value = converter.convert(it)
+            presentation.postValue(converter.convert(it))
         }.ignoreElement()
     }
 

@@ -12,7 +12,7 @@ interface PokemonApi {
     @GET("pokemon/")
     fun getPokemonList(): Single<PokemonListResponse>
 
-    @GET("/pokemon/{id}")
+    @GET("pokemon/{id}")
     fun getPokemonById(@Path(value="id") id: String): Single<PokemonDetailResponse>
 
 }

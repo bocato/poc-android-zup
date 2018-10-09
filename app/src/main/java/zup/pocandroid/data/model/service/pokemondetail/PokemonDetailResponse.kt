@@ -15,7 +15,7 @@ data class PokemonDetailResponse(
 data class Ability(
     @SerializedName("is_hidden")
     val isHidden: Boolean? = null,
-    val slot: Boolean? = null,
+    val slot: Int? = null,
     @SerializedName("ability")
     val abilityDetail: AbilityDetail? = null
 )

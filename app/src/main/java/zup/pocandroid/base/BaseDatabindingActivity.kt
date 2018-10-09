@@ -9,13 +9,16 @@ abstract class BaseDatabindingActivity<DB : ViewDataBinding, VM : ViewModel> : B
 
     protected lateinit var dataBinding: DB
     override val shouldSetContentView: Boolean get() = false
+    override val shouldCallInitialize: Boolean get() = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         if (getLayoutId() != null) {
             dataBinding = DataBindingUtil.setContentView(this, getLayoutId()!!)
             dataBinding.setLifecycleOwner(this)
         }
 
-        super.onCreate(savedInstanceState)
+        initialize()
     }
 }
