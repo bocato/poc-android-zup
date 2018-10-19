@@ -31,6 +31,6 @@ class PokemonDetailPresentationConverterTest {
 
         // Then
         assertTrue(pokemonPresentation.name == pokemonName)
-        assertTrue(pokemonPresentation.abilities == abilityName)
+        assertTrue(pokemonPresentation.abilities == abilityName +  " ")
     }
 }
